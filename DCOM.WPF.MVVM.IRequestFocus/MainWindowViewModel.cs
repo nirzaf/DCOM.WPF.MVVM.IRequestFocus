@@ -1,12 +1,12 @@
 ﻿namespace DCOM.WPF.MVVM.IRequestFocus
 {
+    using MVVM;
     using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Security.Authentication;
     using System.Windows.Input;
-    using MVVM;
-    
+
     public class MainWindowViewModel : INotifyPropertyChanged, IRequestFocus
     {
         private readonly ILoginService loginService;
@@ -20,7 +20,9 @@
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public event EventHandler<FocusRequestedEventArgs> FocusRequested;
+
         public ICommand LoginCommand { get; }
 
         public string Username

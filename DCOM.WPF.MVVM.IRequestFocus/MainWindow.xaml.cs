@@ -1,7 +1,7 @@
 ﻿namespace DCOM.WPF.MVVM.IRequestFocus
 {
-    using System.Windows;
     using MVVM;
+    using System.Windows;
 
     public partial class MainWindow : Window
     {
@@ -15,14 +15,14 @@
             UsernameTextBox.Focus();
             UsernameTextBox.SelectAll();
 
-            IRequestFocus focus = (IRequestFocus) DataContext;
+            IRequestFocus focus = (IRequestFocus)DataContext;
 
             focus.FocusRequested += OnFocusRequested;
         }
 
         private void OnFocusRequested(object sender, FocusRequestedEventArgs e)
         {
-            var viewModel = (MainWindowViewModel) DataContext;
+            var viewModel = (MainWindowViewModel)DataContext;
 
             switch (e.PropertyName)
             {

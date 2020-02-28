@@ -9,7 +9,7 @@ namespace DCOM.WPF.MVVM
     public class ActionCommand : ICommand
     {
         private readonly Action<object> action;
-        private readonly Predicate<Object> predicate;
+        private readonly Predicate<object> predicate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActionCommand"/> class.
@@ -24,19 +24,14 @@ namespace DCOM.WPF.MVVM
         /// </summary>
         /// <param name="action">The action to invoke on command.</param>
         /// <param name="predicate">The predicate that determines if the action can be invoked.</param>
-        public ActionCommand(Action<Object> action, Predicate<Object> predicate)
+        public ActionCommand(Action<object> action, Predicate<object> predicate)
         {
-            if (action == null)
-            {
-                throw new ArgumentNullException("action", "You must specify an Action<T>.");
-            }
-
-            this.action = action;
+            this.action = action ?? throw new ArgumentNullException("action", "You must specify an Action<T>.");
             this.predicate = predicate;
         }
 
         /// <summary>
-        /// Occurs when the <see cref="System.Windows.Input.CommandManager"/> detects conditions that might change the ability of a command to execute.
+        /// Occurs when the <see cref="CommandManager"/> detects conditions that might change the ability of a command to execute.
         /// </summary>
         public event EventHandler CanExecuteChanged
         {
@@ -59,11 +54,11 @@ namespace DCOM.WPF.MVVM
         /// </returns>
         public bool CanExecute(object parameter)
         {
-            if (this.predicate == null)
+            if (predicate == null)
             {
                 return true;
             }
-            return this.predicate(parameter);
+            return predicate(parameter);
         }
 
         /// <summary>
@@ -80,7 +75,7 @@ namespace DCOM.WPF.MVVM
         /// <param name="parameter">A custom parameter object.</param>
         public void Execute(object parameter)
         {
-            this.action(parameter);
+            action(parameter);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace DCOM.WPF.MVVM.IRequestFocus.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Security.Authentication;
     using Moq;
+    using System.Security.Authentication;
 
     [TestClass]
     public class MainViewModelTests
